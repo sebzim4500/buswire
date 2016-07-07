@@ -1,0 +1,5 @@
+{
+  "name": "buswire",
+  "version": "1.0.0",
+  "main": "bin/app.js"
+}

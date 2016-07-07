@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "outDir": "bin",
+        "rootDir": "src",
+        "sourceMap": true,
+        "allowUnreachableCode": true
+    },
+    "exclude": [
+        "node_modules",
+        "public"
+    ]
+}
