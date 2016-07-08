@@ -17,11 +17,11 @@ export class Location {
 export function locationFromPostCode(postcode : string, callback : (location : Location) => void, onError : () => void) {
     request("https://api.postcodes.io/postcodes/"+encodeURIComponent(postcode), (error, response, body) => {
         //TODO more error handling
-        var returned = JSON.parse(body);
+        let returned = JSON.parse(body);
         if (returned.status == "200") {
-            var result = returned.result;
-            var eastings = result.eastings;
-            var northings = result.northings;
+            let result = returned.result;
+            let eastings = result.eastings;
+            let northings = result.northings;
 
             callback(new Location(eastings, northings));
         } else {

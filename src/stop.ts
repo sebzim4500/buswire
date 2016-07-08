@@ -14,25 +14,25 @@ export class BusStop {
 }
 
 export function loadBusStops(file : string) : BusStop[] {
-    var data = fs.readFileSync(file).toString();
-    var lines = data.split("\n");
-    var stops : BusStop[] = [];
+    let data = fs.readFileSync(file).toString();
+    let lines = data.split("\n");
+    let stops : BusStop[] = [];
     // start at 1 to skip the first line (which gives the title of each column)
-    for (var i = 1; i < lines.length; i++) {
-        var line = lines[i];
-        var sections = line.split(",");
-        var code = sections[2]; // This is the field in the CSV file labeled 'Naptan_Atco', not the one labeled code
-        var name = sections[3];
-        var easting = +sections[4];
-        var northing = +sections[5];
+    for (let i = 1; i < lines.length; i++) {
+        let line = lines[i];
+        let sections = line.split(",");
+        let code = sections[2]; // This is the field in the CSV file labeled 'Naptan_Atco', not the one labeled code
+        let name = sections[3];
+        let easting = +sections[4];
+        let northing = +sections[5];
         stops.push(new BusStop(code, name, easting, northing));
     }
     return stops;
 }
 
 export function closestTwoStops(location : Location, stops : BusStop[]) : BusStop[] {
-    var lowestDistance = Infinity;
-    var closestStop : BusStop = null;
+    let lowestDistance = Infinity;
+    let closestStop : BusStop = null;
     stops.forEach(stop => {
         if (location.distTo(stop.location) < lowestDistance) {
             lowestDistance = location.distTo(stop.location);
@@ -40,7 +40,7 @@ export function closestTwoStops(location : Location, stops : BusStop[]) : BusSto
         }
     });
     lowestDistance = Infinity;
-    var secondClosestStop : BusStop = null;
+    let secondClosestStop : BusStop = null;
     stops.forEach(stop => {
         if (stop != closestStop && location.distTo(stop.location) < lowestDistance) {
             lowestDistance = location.distTo(stop.location);

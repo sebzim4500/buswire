@@ -16,9 +16,9 @@ export class BusInformation {
 export function getArrivalsAtStop(stop : BusStop, callback : (information : BusInformation[]) => void) {
     request(`https://api.tfl.gov.uk/StopPoint/${stop.code}/arrivals`, (error, response, body) => {
         //TODO error handling
-        var json = JSON.parse(body);
-        var result : BusInformation[] = [];
-        for (var i = 0; i < json.length; i++) {
+        let json = JSON.parse(body);
+        let result : BusInformation[] = [];
+        for (let i = 0; i < json.length; i++) {
             result.push(new BusInformation(json[i]));
         }
         callback(result);
