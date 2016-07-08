@@ -31,19 +31,19 @@ export function loadBusStops(file : string) : BusStop[] {
 export function closestTwoStops(location : Location, stops : BusStop[]) : BusStop[] {
     let lowestDistance = Infinity;
     let closestStop : BusStop = null;
-    stops.forEach(stop => {
+    for (let stop of stops) {
         if (location.distTo(stop.location) < lowestDistance) {
             lowestDistance = location.distTo(stop.location);
             closestStop = stop;
         }
-    });
+    }
     lowestDistance = Infinity;
     let secondClosestStop : BusStop = null;
-    stops.forEach(stop => {
+    for (let stop of stops) {
         if (stop != closestStop && location.distTo(stop.location) < lowestDistance) {
             lowestDistance = location.distTo(stop.location);
             secondClosestStop = stop;
         }
-    });
+    }
     return [closestStop, secondClosestStop];
 }

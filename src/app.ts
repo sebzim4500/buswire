@@ -37,8 +37,7 @@ function writeTableForInformation(stop : BusStop, information : BusInformation[]
     information = information.splice(0,5);
     response.write(`<br><heading> Arrivals at ${stop.name}: </heading>`);
     response.write("<table>");
-    for(let i = 0; i < information.length; i++) {
-        let bus = information[i];
+    for(let bus of information) {
         response.write(`<tr><td><b>${bus.line.toUpperCase()}</b></td> <td>${bus.destination}</td> <td>${bus.timeToStation}</td></tr>`);
     }
     response.write("</table>");

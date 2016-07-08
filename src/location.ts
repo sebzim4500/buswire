@@ -4,7 +4,7 @@ export class Location {
     constructor (public easting : number, public northing : number) { }
 
     distTo (other : Location) : number {
-        return Math.sqrt(Math.pow(this.easting - other.easting, 2) + Math.pow(this.northing - other.northing, 2));
+        return Math.sqrt((this.easting - other.easting) ** 2 + (this.northing - other.northing) ** 2);
     }
 }
 
@@ -13,10 +13,7 @@ export function locationFromPostCode(postcode : string, callback : (location : L
         //TODO more error handling
         let returned = JSON.parse(body);
         if (returned.status == "200") {
-            let result = returned.result;
-            let eastings = result.eastings;
-            let northings = result.northings;
-
+            let {eastings, northings} = returned.result;
             callback(new Location(eastings, northings));
         } else {
             onError();
