@@ -14,13 +14,18 @@ export class Location {
     }
 }
 
-export function locationFromPostCode(postcode : string, callback : (location : Location) => void) {
+export function locationFromPostCode(postcode : string, callback : (location : Location) => void, onError : () => void) {
     request("https://api.postcodes.io/postcodes/"+encodeURIComponent(postcode), (error, response, body) => {
-        //TODO error handling
-        var result = JSON.parse(body).result;
-        var eastings = result.eastings;
-        var northings = result.northings;
+        //TODO more error handling
+        var returned = JSON.parse(body);
+        if (returned.status == "200") {
+            var result = returned.result;
+            var eastings = result.eastings;
+            var northings = result.northings;
 
-        callback(new Location(eastings, northings));
+            callback(new Location(eastings, northings));
+        } else {
+            onError();
+        }
     })
 }

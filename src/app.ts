@@ -25,6 +25,10 @@ function displayDataForPostcode(postcode : string, response : http.ServerRespons
                 response.end(pageEnd);
             });
         });
+    }, () => {
+        response.end(`<html> <head> <title> Invalid postcode </title> </head>
+            <body> Could not get information for postcode: ${postcode}. <br>
+            <a href = "/"> Return to home. </a> </body> </html>`);
     });
 }
 
