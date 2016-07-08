@@ -1,13 +1,7 @@
 import request = require("request");
 
 export class Location {
-    easting : number;
-    northing : number;
-
-    constructor (easting : number, northing : number) {
-        this.easting = easting;
-        this.northing = northing;
-    }
+    constructor (public easting : number, public northing : number) { }
 
     distTo (other : Location) : number {
         return Math.sqrt(Math.pow(this.easting - other.easting, 2) + Math.pow(this.northing - other.northing, 2));

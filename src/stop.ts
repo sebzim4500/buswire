@@ -2,11 +2,9 @@ import fs = require("fs");
 import { Location } from "./location"
 
 export class BusStop {
-    code : string;
-    name : string;
     location : Location;
 
-    constructor (code : string, name : string, easting : number, northing : number) {
+    constructor (public code : string, public name : string, easting : number, northing : number) {
         this.code = code;
         this.name = name;
         this.location = new Location(easting, northing);
